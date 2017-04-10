@@ -8,7 +8,13 @@ var pikeStand = {
   maxCustomers: 65,
   avgPerCustomer: 6.3,
   cookiesSold: [], //each index will represent an hour in the day starting at 6am
-  
+  populateCookiesSold: function() {
+    var cookies;
+    for(var i = 0; i < 16; i++) {
+      cookies = (Math.floor(Math.random() * (minCustomers * maxCustomers + 1)) + minCustomers) * avgPerCustomer;
+      cookiesSold.push(cookies);
+    }
+  },
 }
 stands.push(pikeStand);
 
