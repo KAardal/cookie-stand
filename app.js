@@ -10,7 +10,7 @@ var pikeStand = {
   cookiesSold: [], //each index will represent an hour in the day starting at 6am
   populateCookiesSold: function() {
     for(var i = 0; i < 16; i++) {
-      this.cookiesSold.push(Math.floor(Math.random() * (this.maxCustomers - this.minCustomers + 1)) + this.minCustomers);
+      this.cookiesSold.push(Math.floor(((Math.random() * (this.maxCustomers - this.minCustomers + 1)) + this.minCustomers) * this.avgPerCustomer));
     }
   },
 }
@@ -25,7 +25,7 @@ var seaTacStand = {
   cookiesSold: [],
   populateCookiesSold: function() {
     for(var i = 0; i < 16; i++) {
-      this.cookiesSold.push(Math.floor(Math.random() * (this.maxCustomers - this.minCustomers + 1)) + this.minCustomers);
+      this.cookiesSold.push(Math.floor(((Math.random() * (this.maxCustomers - this.minCustomers + 1)) + this.minCustomers) * this.avgPerCustomer));
     }
   },
 }
@@ -40,7 +40,7 @@ var seattleCenterStand = {
   cookiesSold: [],
   populateCookiesSold: function() {
     for(var i = 0; i < 16; i++) {
-      this.cookiesSold.push(Math.floor(Math.random() * (this.maxCustomers - this.minCustomers + 1)) + this.minCustomers);
+      this.cookiesSold.push(Math.floor(((Math.random() * (this.maxCustomers - this.minCustomers + 1)) + this.minCustomers) * this.avgPerCustomer));
     }
   },
 }
@@ -55,7 +55,7 @@ var capitolHillStand = {
   cookiesSold: [],
   populateCookiesSold: function() {
     for(var i = 0; i < 16; i++) {
-      this.cookiesSold.push(Math.floor(Math.random() * (this.maxCustomers - this.minCustomers + 1)) + this.minCustomers);
+      this.cookiesSold.push(Math.floor(((Math.random() * (this.maxCustomers - this.minCustomers + 1)) + this.minCustomers) * this.avgPerCustomer));
     }
   },
 }
@@ -70,7 +70,7 @@ var alkiStand = {
   cookiesSold: [],
   populateCookiesSold: function() {
     for(var i = 0; i < 16; i++) {
-      this.cookiesSold.push(Math.floor(Math.random() * (this.maxCustomers - this.minCustomers + 1)) + this.minCustomers);
+      this.cookiesSold.push(Math.floor(((Math.random() * (this.maxCustomers - this.minCustomers + 1)) + this.minCustomers) * this.avgPerCustomer));
     }
   },
 }
