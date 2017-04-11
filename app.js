@@ -50,19 +50,23 @@ var pike = new CookieStand('1st and Pike', 23, 65, 6.5);
 pike.getCookiesSold();
 
 var seaTac = new CookieStand('SeaTac Airport', 3, 24, 1.2);
-pike.getCookiesSold();
+seaTac.getCookiesSold();
 
 var seattleCenter = new CookieStand('Seattle Center', 11, 38, 3.7);
-pike.getCookiesSold();
+seattleCenter.getCookiesSold();
 
 var capitolHill = new CookieStand('Capitol Hill', 20, 38, 2.3);
-pike.getCookiesSold();
+capitolHill.getCookiesSold();
 
 var alki = new CookieStand('Alki', 2, 16, 4.6);
-pike.getCookiesSold();
+alki.getCookiesSold();
 
 var div = document.getElementById('table-div');
 var table = document.createElement('table');
 table.setAttribute('id', 'sales-table');
 table.appendChild(pike.getTableRow());
+table.appendChild(seaTac.getTableRow());
+table.appendChild(seattleCenter.getTableRow());
+table.appendChild(capitolHill.getTableRow());
+table.appendChild(alki.getTableRow());
 div.appendChild(table);
