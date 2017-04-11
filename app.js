@@ -10,6 +10,15 @@ function CookieStand(location, min, max, avg) {
 
 CookieStand.prototype.getCookiesSold = function () {
   for(var i = 0; i < 15; i++) {
-    this.cookies.push(Math.floor(((Math.random() * (this.maxCustomers - this.minCustomers + 1)) + this.minCustomers) * this.avgPerCustomer));
+    this.cookies.push(Math.floor(((Math.random() * (this.max - this.min + 1)) + this.min) * this.avg));
   }
+  return this.cookies;
+};
+
+CookieStand.prototype.getTotalCookies = function () {
+  var total = 0;
+  for(var i = 0; i < this.cookies.length; i++) {
+    total += this.cookies[i];
+  }
+  return total;
 };
