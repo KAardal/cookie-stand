@@ -8,17 +8,29 @@ function CookieStand(location, min, max, avg) {
   this.cookies = [];
 }
 
-CookieStand.prototype.getCookiesSold = function () {
+CookieStand.prototype.getCookiesSold = function() {
   for(var i = 0; i < 15; i++) {
     this.cookies.push(Math.floor(((Math.random() * (this.max - this.min + 1)) + this.min) * this.avg));
   }
   return this.cookies;
 };
 
-CookieStand.prototype.getTotalCookies = function () {
+CookieStand.prototype.getTotalCookies = function() {
   var total = 0;
   for(var i = 0; i < this.cookies.length; i++) {
     total += this.cookies[i];
   }
   return total;
+};
+
+CookieStand.prototype.getTableRow = function() {
+  var row = document.createElement('tr');
+  row.setAttribute('class', 'sales-row');
+};
+
+CookieStand.prototype.getTableData = function(index) {
+  var td = document.createElement('td');
+  td.setAttribute('class', 'sales-td');
+  td.textContent = this.cookies[index];
+  return td;
 };
