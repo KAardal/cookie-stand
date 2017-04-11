@@ -50,7 +50,7 @@ function createTableHeaderRow() {
   var row = document.createElement('tr');
   row.setAttribute('id', 'sales-header-row');
   var th = document.createElement('th');
-  th.setAttribute('id', 'blank-sales-th');
+  th.setAttribute('class', 'sales-th');
   th.textContent = '';
   row.appendChild(th);
   var time;
@@ -58,7 +58,6 @@ function createTableHeaderRow() {
     th = document.createElement('th');
     th.setAttribute('class', 'sales-th');
     time = i + 5;
-    console.log(time);
     if(time < 12){
       th.textContent = time + ':00am';
     } else if(time > 12){
@@ -73,6 +72,26 @@ function createTableHeaderRow() {
   th.setAttribute('class', 'sales-th');
   th.textContent = 'Daily Location Total';
   row.appendChild(th);
+  return row;
+}
+
+function createTableFooterRow() {
+  var row = document.createElement('tr');
+  row.setAttribute('id', 'sales-footer-row');
+  var tf = document.createElement('td');
+  tf.setAttribute('class', 'sales-tf');
+  tf.textContent = 'totals';
+  row.appendChild(tf);
+  for(var i = 0; i < 14; i++){
+    tf = document.createElement('td');
+    tf.setAttribute('class', 'sales-tf');
+    tf.textContent = '';
+    row.appendChild(tf);
+  }
+  tf = document.createElement('td');
+  tf.setAttribute('class', 'sales-tf');
+  tf.textContent = '';
+  row.appendChild(tf);
   return row;
 }
 
@@ -95,12 +114,19 @@ function renderTable() {
   var div = document.getElementById('table-div');
   var table = document.createElement('table');
   table.setAttribute('id', 'sales-table');
-  table.appendChild(createTableHeaderRow());
+  var head = document.createElement('thead');
+  head.setAttribute('id', 'sales-head');
+  head.appendChild(createTableHeaderRow());
+  table.appendChild(head);
   table.appendChild(pike.getTableRow());
   table.appendChild(seaTac.getTableRow());
   table.appendChild(seattleCenter.getTableRow());
   table.appendChild(capitolHill.getTableRow());
   table.appendChild(alki.getTableRow());
+  var foot = document.createElement('tfoot');
+  foot.setAttribute('id', 'sales-foot');
+  foot.appendChild(createTableFooterRow());
+  table.appendChild(foot);
   div.appendChild(table);
 }
 
