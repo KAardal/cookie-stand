@@ -10,10 +10,8 @@ var pikeStand = {
   cookiesSold: [], //each index will represent an hour in the day starting at 6am
   populateCookiesSold: function() {
     var cookies;
-    //var total;
     for(var i = 0; i < 16; i++) {
       cookies = Math.floor(((Math.random() * (this.maxCustomers - this.minCustomers + 1)) + this.minCustomers) * this.avgPerCustomer);
-      //total += cookies;
       this.cookiesSold.push(cookies);
     }
   },
