@@ -81,22 +81,30 @@ var alkiStand = {
 alkiStand.populateCookiesSold();
 stands.push(alkiStand);
 
-var listDiv = document.getElementById('list-div');
-var standsUl;
-var listHeading;
-var currentStand;
-for(var i = 0; i < stands.length; i++) {
-  currentStand = stands[i];
-  standsUl = document.createElement('ul');
-  standsUl.setAttribute("class", "sales-list");
-  listDiv.appendChild(standsUl);
-  listHeading = document.createElement('lh');
-  standsUl.appendChild(listHeading);
-  listHeading.textContent = currentStand.location;
+function standsIterator(standsArray) {
+  var listDiv = document.getElementById('list-div');
+  var standsUl;
+  var listHeading;
+  var currentStand;
+  for(var i = 0; i < standsArray.length; i++) {
+    currentStand = standsArray[i];
+    standsUl = document.createElement('ul');
+    standsUl.setAttribute("class", "sales-list");
+    listDiv.appendChild(standsUl);
+    listHeading = document.createElement('lh');
+    standsUl.appendChild(listHeading);
+    listHeading.textContent = currentStand.location;
 
+    populateListItems(currentStand, standsUl);
+  }
+}
+
+function populateListItems(stand, ul) {
   var standsLi;
   var time;
   var listEntry;
+  var currentStand = stand;
+  var standsUl = ul;
   for(var j = 0; j < currentStand.cookiesSold.length - 1; j++) {
     time = j + 6;
     if(time < 12){
@@ -114,8 +122,24 @@ for(var i = 0; i < stands.length; i++) {
     standsLi.textContent = listEntry;
     standsUl.appendChild(standsLi);
   }
+  populateTotal(currentStand, standsUl);
+}
+
+function populateTotal(stand, ul) {
+  var standsLi;
+  var currentStand = stand;
+  var standsUl = ul;
+  var cookies;
+  var totalCookies = 0;
+  for(var i = 0; i < currentStand.cookiesSold.length; i++) {
+    cookies = currentStand.cookiesSold[i];
+    totalCookies += cookies;
+  }
+
   standsLi = document.createElement('li');
   standsLi.setAttribute("class", "total");
-  standsLi.textContent = 'Total: ' + currentStand.cookiesSold[currentStand.cookiesSold.length - 1] + ' cookies';
+  standsLi.textContent = 'Total: ' + totalCookies + ' cookies';
   standsUl.appendChild(standsLi);
 }
+
+standsIterator(stands);
