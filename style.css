@@ -8,3 +8,15 @@
 html, body {
   height: 100%;
 }
+
+body {
+  font-family: Georgia;
+}
+
+.sales-list {
+  margin: 25px;
+}
+
+.sales-per-hour {
+  font-family: Helvetica;
+}

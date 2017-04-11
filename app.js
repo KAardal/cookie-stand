@@ -84,6 +84,7 @@ var currentStand;
 for(var i = 0; i < stands.length; i++) {
   currentStand = stands[i];
   standsUl = document.createElement('ul');
+  standsUl.setAttribute("class", "sales-list");
   listDiv.appendChild(standsUl);
   listHeading = document.createElement('lh');
   standsUl.appendChild(listHeading);
@@ -106,6 +107,7 @@ for(var i = 0; i < stands.length; i++) {
 
     listEntry += currentStand.cookiesSold[j] + ' cookies';
     standsLi = document.createElement('li');
+    standsLi.setAttribute("class", "sales-per-hour");
     standsLi.textContent = listEntry;
     standsUl.appendChild(standsLi);
   }
