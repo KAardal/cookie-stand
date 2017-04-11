@@ -9,8 +9,12 @@ var pikeStand = {
   avgPerCustomer: 6.3,
   cookiesSold: [], //each index will represent an hour in the day starting at 6am
   populateCookiesSold: function() {
+    var cookies;
+    var total;
     for(var i = 0; i < 16; i++) {
-      this.cookiesSold.push(Math.floor(((Math.random() * (this.maxCustomers - this.minCustomers + 1)) + this.minCustomers) * this.avgPerCustomer));
+      cookies = Math.floor(((Math.random() * (this.maxCustomers - this.minCustomers + 1)) + this.minCustomers) * this.avgPerCustomer);
+      total += cookies;
+      this.cookiesSold.push(cookies);
     }
   },
 }
@@ -92,9 +96,8 @@ for(var i = 0; i < stands.length; i++) {
 
   var standsLi;
   var time;
-  var total;
   var listEntry;
-  for(var j = 0; j < currentStand.cookiesSold.length; j++) {
+  for(var j = 0; j < currentStand.cookiesSold.length - 1; j++) {
     time = j + 6;
     if(time < 12){
       listEntry = time + 'am: ';
@@ -111,4 +114,8 @@ for(var i = 0; i < stands.length; i++) {
     standsLi.textContent = listEntry;
     standsUl.appendChild(standsLi);
   }
+  standsLi = document.createElement('li');
+  standsLi.setAttribute("class", "total");
+  standsLi.textContent = 'Total: ' + currentStand.cookiesSold[currentStand.cookiesSold.length - 1] + ' cookies';
+  standsUl.appendChild(standsLi);
 }
