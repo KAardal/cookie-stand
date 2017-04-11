@@ -17,6 +17,6 @@ body {
   margin: 25px;
 }
 
-.sales-per-hour {
+.sales-per-hour, .total {
   font-family: Helvetica;
 }
