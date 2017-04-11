@@ -9,14 +9,6 @@ html, body {
   height: 100%;
 }
 
-body {
-  font-family: Georgia;
-}
-
-.sales-list {
-  margin: 25px;
-}
-
-.sales-per-hour, .total {
-  font-family: Helvetica;
+table, table * {
+  border: 2px solid black;
 }

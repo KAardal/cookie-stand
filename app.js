@@ -26,6 +26,17 @@ CookieStand.prototype.getTotalCookies = function() {
 CookieStand.prototype.getTableRow = function() {
   var row = document.createElement('tr');
   row.setAttribute('class', 'sales-row');
+  var td = document.createElement('td');
+  td.setAttribute('class', 'location-td');
+  td.textContent = this.location;
+  row.appendChild(td);
+  for(var i = 0; i < this.cookies.length; i++) {
+    td = this.getTableData(i);
+    row.appendChild(td);
+  }
+  td.textContent = this.getTotalCookies();
+  row.appendChild(td);
+  return row;
 };
 
 CookieStand.prototype.getTableData = function(index) {
@@ -34,3 +45,24 @@ CookieStand.prototype.getTableData = function(index) {
   td.textContent = this.cookies[index];
   return td;
 };
+
+var pike = new CookieStand('1st and Pike', 23, 65, 6.5);
+pike.getCookiesSold();
+
+var seaTac = new CookieStand('SeaTac Airport', 3, 24, 1.2);
+pike.getCookiesSold();
+
+var seattleCenter = new CookieStand('Seattle Center', 11, 38, 3.7);
+pike.getCookiesSold();
+
+var capitolHill = new CookieStand('Capitol Hill', 20, 38, 2.3);
+pike.getCookiesSold();
+
+var alki = new CookieStand('Alki', 2, 16, 4.6);
+pike.getCookiesSold();
+
+var div = document.getElementById('table-div');
+var table = document.createElement('table');
+table.setAttribute('id', 'sales-table');
+table.appendChild(pike.getTableRow());
+div.appendChild(table);
