@@ -10,14 +10,14 @@ var pikeStand = {
   cookiesSold: [], //each index will represent an hour in the day starting at 6am
   populateCookiesSold: function() {
     var cookies;
-    var total;
+    //var total;
     for(var i = 0; i < 16; i++) {
       cookies = Math.floor(((Math.random() * (this.maxCustomers - this.minCustomers + 1)) + this.minCustomers) * this.avgPerCustomer);
-      total += cookies;
+      //total += cookies;
       this.cookiesSold.push(cookies);
     }
   },
-}
+};
 pikeStand.populateCookiesSold();
 stands.push(pikeStand);
 
@@ -32,7 +32,7 @@ var seaTacStand = {
       this.cookiesSold.push(Math.floor(((Math.random() * (this.maxCustomers - this.minCustomers + 1)) + this.minCustomers) * this.avgPerCustomer));
     }
   },
-}
+};
 seaTacStand.populateCookiesSold();
 stands.push(seaTacStand);
 
@@ -47,7 +47,7 @@ var seattleCenterStand = {
       this.cookiesSold.push(Math.floor(((Math.random() * (this.maxCustomers - this.minCustomers + 1)) + this.minCustomers) * this.avgPerCustomer));
     }
   },
-}
+};
 seattleCenterStand.populateCookiesSold();
 stands.push(seattleCenterStand);
 
@@ -62,7 +62,7 @@ var capitolHillStand = {
       this.cookiesSold.push(Math.floor(((Math.random() * (this.maxCustomers - this.minCustomers + 1)) + this.minCustomers) * this.avgPerCustomer));
     }
   },
-}
+};
 capitolHillStand.populateCookiesSold();
 stands.push(capitolHillStand);
 
@@ -76,8 +76,8 @@ var alkiStand = {
     for(var i = 0; i < 16; i++) {
       this.cookiesSold.push(Math.floor(((Math.random() * (this.maxCustomers - this.minCustomers + 1)) + this.minCustomers) * this.avgPerCustomer));
     }
-  },
-}
+  }
+};
 alkiStand.populateCookiesSold();
 stands.push(alkiStand);
 
@@ -89,7 +89,7 @@ function standsIterator(standsArray) {
   for(var i = 0; i < standsArray.length; i++) {
     currentStand = standsArray[i];
     standsUl = document.createElement('ul');
-    standsUl.setAttribute("class", "sales-list");
+    standsUl.setAttribute('class', 'sales-list');
     listDiv.appendChild(standsUl);
     listHeading = document.createElement('lh');
     standsUl.appendChild(listHeading);
@@ -118,7 +118,7 @@ function populateListItems(stand, ul) {
 
     listEntry += currentStand.cookiesSold[j] + ' cookies';
     standsLi = document.createElement('li');
-    standsLi.setAttribute("class", "sales-per-hour");
+    standsLi.setAttribute('class', 'sales-per-hour');
     standsLi.textContent = listEntry;
     standsUl.appendChild(standsLi);
   }
@@ -137,7 +137,7 @@ function populateTotal(stand, ul) {
   }
 
   standsLi = document.createElement('li');
-  standsLi.setAttribute("class", "total");
+  standsLi.setAttribute('class', 'total');
   standsLi.textContent = 'Total: ' + totalCookies + ' cookies';
   standsUl.appendChild(standsLi);
 }
