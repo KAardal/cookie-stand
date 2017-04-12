@@ -1,6 +1,7 @@
 'use strict';
 
 var stands = [];
+const hours = 15;
 
 function CookieStand(location, min, max, avg) {
   this.location = location;
@@ -11,7 +12,7 @@ function CookieStand(location, min, max, avg) {
 }
 
 CookieStand.prototype.getCookiesSold = function() {
-  for(var i = 0; i < 15; i++) {
+  for(var i = 0; i < hours; i++) {
     this.cookies.push(Math.floor(((Math.random() * (this.max - this.min + 1)) + this.min) * this.avg));
   }
   return this.cookies;
@@ -62,7 +63,7 @@ function createTableHeaderRow() {
   th.textContent = '';
   row.appendChild(th);
   var time;
-  for(var i = 1; i < 15; i++) {
+  for(var i = 1; i < hours; i++) {
     th = document.createElement('th');
     th.setAttribute('class', 'sales-th');
     time = i + 5;
@@ -83,21 +84,41 @@ function createTableHeaderRow() {
   return row;
 }
 
-function createTableFooterRow() {
+function createTableFooterRow(stands) {
   var row = document.createElement('tr');
   row.setAttribute('id', 'sales-footer-row');
   var tf = document.createElement('td');
   tf.setAttribute('class', 'sales-tf');
   tf.textContent = 'totals';
   row.appendChild(tf);
-  for(var i = 0; i < stands.length; i++){
-    var total;
+  var total;
+  for(var i = 0; i < hours; i++) {
     tf = document.createElement('td');
     tf.setAttribute('class', 'sales-tf');
-    total += stands[i].cookies[i];
+    total = 0;
+    console.log('create td');
+    for(var j = 0; j < stands.length; j++) {
+      console.log('move though stands array');
+      console.log(stands[j]);
+      var stand = stands[j];
+      total += stand.cookies[i];
+    }
     tf.textContent = total;
     row.appendChild(tf);
   }
+
+
+  // var total;
+  // for(var i = 0; i < hours; i++){
+  //   tf = document.createElement('td');
+  //   tf.setAttribute('class', 'sales-tf');
+  //   for(var j = 0; j < stands.length; j++) {
+  //     var stand = stands[i];
+  //     total += stand.cookies[j];
+  //     tf.textContent = total;
+  //   }
+  //   row.appendChild(tf);
+  // }
   tf = document.createElement('td');
   tf.setAttribute('class', 'sales-tf');
   tf.textContent = '';
@@ -119,7 +140,7 @@ function renderTable(stands) {
   }
   var foot = document.createElement('tfoot');
   foot.setAttribute('id', 'sales-foot');
-  foot.appendChild(createTableFooterRow(stands[i]));
+  foot.appendChild(createTableFooterRow(stands));
   table.appendChild(foot);
   div.textContent = '';
   div.appendChild(table);
@@ -127,22 +148,10 @@ function renderTable(stands) {
 
 function createExistingLocations() {
   createCookieStand('1st and Pike', 23, 65, 6.5);
-
-  // var seaTac = new CookieStand('SeaTac Airport', 3, 24, 1.2);
-  // seaTac.getCookiesSold();
-  // stands.push(seaTac);
-  //
-  // var seattleCenter = new CookieStand('Seattle Center', 11, 38, 3.7);
-  // seattleCenter.getCookiesSold();
-  // stands.push(seattleCenter);
-  //
-  // var capitolHill = new CookieStand('Capitol Hill', 20, 38, 2.3);
-  // capitolHill.getCookiesSold();
-  // stands.push(capitolHill);
-  //
-  // var alki = new CookieStand('Alki', 2, 16, 4.6);
-  // alki.getCookiesSold();
-  // stands.push(alki);
+  createCookieStand('SeaTac Airport', 3, 24, 1.2);
+  createCookieStand('Seattle Center', 11, 38, 3.7);
+  createCookieStand('Capitol Hill', 20, 38, 2.3);
+  createCookieStand('Alki', 2, 16, 4.6);
 }
 
 function addLocationHandler(event) {
