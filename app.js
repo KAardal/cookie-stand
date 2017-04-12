@@ -132,4 +132,11 @@ function renderTable() {
   div.appendChild(table);
 }
 
+function addLocationHandler(event) {
+  event.preventDefault();
+}
+
+var addLocationForm = document.getElementById('add-location');
+addLocationForm.addEventListener('submit', addLocationHandler);
+
 renderTable();
