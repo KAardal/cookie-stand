@@ -11,4 +11,21 @@ html, body {
 
 table, table * {
   border: 2px solid black;
+  width: 75%;
+  margin: auto;
+  text-align: center;
+}
+
+div {
+  font-family: Georgia;
+}
+
+h1 {
+  text-align: center;
+  margin: 5px;
+}
+
+td, th {
+  padding: 5px;
+  font-family: Helvetica;
 }
