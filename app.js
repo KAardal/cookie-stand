@@ -13,7 +13,7 @@ function CookieStand(location, min, max, avg) {
 
 CookieStand.prototype.getCookiesSold = function() {
   for(var i = 0; i < hours; i++) {
-    this.cookies.push(Math.floor(((Math.random() * (this.max - this.min + 1)) + this.min) * this.avg));
+    this.cookies.push(Math.floor(((Math.random() * (this.max - this.min) + 1) + this.min) * this.avg));
   }
   return this.cookies;
 };
@@ -92,33 +92,17 @@ function createTableFooterRow(stands) {
   tf.textContent = 'totals';
   row.appendChild(tf);
   var total;
-  for(var i = 0; i < hours; i++) {
+  for(var i = 0; i < hours - 1; i++) {
     tf = document.createElement('td');
     tf.setAttribute('class', 'sales-tf');
     total = 0;
-    console.log('create td');
     for(var j = 0; j < stands.length; j++) {
-      console.log('move though stands array');
-      console.log(stands[j]);
       var stand = stands[j];
       total += stand.cookies[i];
     }
     tf.textContent = total;
     row.appendChild(tf);
   }
-
-
-  // var total;
-  // for(var i = 0; i < hours; i++){
-  //   tf = document.createElement('td');
-  //   tf.setAttribute('class', 'sales-tf');
-  //   for(var j = 0; j < stands.length; j++) {
-  //     var stand = stands[i];
-  //     total += stand.cookies[j];
-  //     tf.textContent = total;
-  //   }
-  //   row.appendChild(tf);
-  // }
   tf = document.createElement('td');
   tf.setAttribute('class', 'sales-tf');
   tf.textContent = '';
