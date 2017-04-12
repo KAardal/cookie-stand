@@ -121,6 +121,7 @@ function renderTable(stands) {
   foot.setAttribute('id', 'sales-foot');
   foot.appendChild(createTableFooterRow(stands[i]));
   table.appendChild(foot);
+  div.textContent = '';
   div.appendChild(table);
 }
 
@@ -157,6 +158,8 @@ function addLocationHandler(event) {
   event.target.max.value = '';
   event.target.avg.value = '';
 
+  createCookieStand(location, min, max, avg);
+  renderTable(stands);
 }
 
 var addLocationForm = document.getElementById('add-location');
