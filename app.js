@@ -84,7 +84,7 @@ function createTableHeaderRow() {
   return row;
 }
 
-function createTableFooterRow(stands) {
+function createTableFooterRow() {
   var row = document.createElement('tr');
   row.setAttribute('id', 'sales-footer-row');
   var tf = document.createElement('td');
@@ -110,7 +110,7 @@ function createTableFooterRow(stands) {
   return row;
 }
 
-function renderTable(stands) {
+function renderTable() {
 
   var div = document.getElementById('table-div');
   var table = document.createElement('table');
@@ -124,7 +124,7 @@ function renderTable(stands) {
   }
   var foot = document.createElement('tfoot');
   foot.setAttribute('id', 'sales-foot');
-  foot.appendChild(createTableFooterRow(stands));
+  foot.appendChild(createTableFooterRow());
   table.appendChild(foot);
   div.textContent = '';
   div.appendChild(table);
@@ -152,11 +152,11 @@ function addLocationHandler(event) {
   event.target.avg.value = '';
 
   createCookieStand(location, min, max, avg);
-  renderTable(stands);
+  renderTable();
 }
 
 var addLocationForm = document.getElementById('add-location');
 addLocationForm.addEventListener('submit', addLocationHandler);
 
 createExistingLocations();
-renderTable(stands);
+renderTable();
