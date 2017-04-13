@@ -1,14 +1,23 @@
 <!DOCTYPE html>
 
 <html>
-  <head>
-    <title>Salmon Cookie Sales</title>
-  </head>
-  <body>
-    <h1>Salmon Cookie Sales</h1>
-    <div id="table-div">
-    </div>
-    <link href="style.css" rel="stylesheet" type="text/css"/>
-    <script src="app.js"></script>
-  </body>
+<head>
+  <title>Salmon Cookie Sales</title>
+  <link href="style.css" rel="stylesheet" type="text/css"/>
+</head>
+<body>
+  <img src="salmon.png"/>
+  <h1>Salmon Cookie Sales</h1>
+  <div id="form-div">
+    <form id="add-location">
+      <input name="location" type="text" placeholder="Location" required/>
+      <input name="min" type="number" placeholder="Minimum Customers" required/>
+      <input name="max" type="number" placeholder="Maximum Customers" required/>
+      <input name="avg" type="number" placeholder="Avergage # of cookies purchased" required/>
+      <button id="add-button" type="submit">Add Location</button>
+    </form>
+  </div>
+  <div id="table-div"></div>
+  <script src="app.js"></script>
+</body>
 </html>

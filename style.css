@@ -7,6 +7,7 @@
 
 html, body {
   height: 100%;
+  background-color: #a3d1c4;
 }
 
 table, table * {
@@ -20,12 +21,40 @@ div {
   font-family: Georgia;
 }
 
+img {
+  display: block;
+  margin: auto;
+  width: 540px;
+  height: auto;
+}
+
 h1 {
   text-align: center;
   margin: 5px;
+  font-size: 50px;
 }
 
 td, th {
   padding: 5px;
   font-family: Helvetica;
+}
+
+input, button {
+  display: block;
+  width: 20%;
+  margin: auto;
+  margin-bottom: 2px;
+}
+
+#add-button {
+  border-radius: 5px;
+  margin-bottom: 5px;
+}
+
+#add-button:hover {
+  background-color: red;
+}
+
+#add-button:active {
+  background-color: white;
 }

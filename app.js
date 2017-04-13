@@ -1,5 +1,8 @@
 'use strict';
 
+var stands = [];
+const hours = 15;
+
 function CookieStand(location, min, max, avg) {
   this.location = location;
   this.min = min;
@@ -9,8 +12,8 @@ function CookieStand(location, min, max, avg) {
 }
 
 CookieStand.prototype.getCookiesSold = function() {
-  for(var i = 0; i < 15; i++) {
-    this.cookies.push(Math.floor(((Math.random() * (this.max - this.min + 1)) + this.min) * this.avg));
+  for(var i = 0; i < hours; i++) {
+    this.cookies.push(Math.floor(((Math.random() * (this.max - this.min) + 1) + this.min) * this.avg));
   }
   return this.cookies;
 };
@@ -46,6 +49,12 @@ CookieStand.prototype.getTableData = function(index) {
   return td;
 };
 
+function createCookieStand(location, min, max, avg) {
+  var i = stands.length;
+  stands.push(window['stand' + i] = new CookieStand(location, min, max, avg));
+  stands[i].getCookiesSold();
+}
+
 function createTableHeaderRow() {
   var row = document.createElement('tr');
   row.setAttribute('id', 'sales-header-row');
@@ -54,7 +63,7 @@ function createTableHeaderRow() {
   th.textContent = '';
   row.appendChild(th);
   var time;
-  for(var i = 1; i < 15; i++) {
+  for(var i = 1; i < hours; i++) {
     th = document.createElement('th');
     th.setAttribute('class', 'sales-th');
     time = i + 5;
@@ -75,18 +84,22 @@ function createTableHeaderRow() {
   return row;
 }
 
-function createTableFooterRow(pike, seaTac, seattleCenter, capitolHill, alki) {
+function createTableFooterRow() {
   var row = document.createElement('tr');
   row.setAttribute('id', 'sales-footer-row');
   var tf = document.createElement('td');
   tf.setAttribute('class', 'sales-tf');
   tf.textContent = 'totals';
   row.appendChild(tf);
-  for(var i = 0; i < 14; i++){
-    var total;
+  var total;
+  for(var i = 0; i < hours - 1; i++) {
     tf = document.createElement('td');
     tf.setAttribute('class', 'sales-tf');
-    total = pike.cookies[i] + seaTac.cookies[i] + seattleCenter.cookies[i] + capitolHill.cookies[i] + alki.cookies[i];
+    total = 0;
+    for(var j = 0; j < stands.length; j++) {
+      var stand = stands[j];
+      total += stand.cookies[i];
+    }
     tf.textContent = total;
     row.appendChild(tf);
   }
@@ -98,20 +111,6 @@ function createTableFooterRow(pike, seaTac, seattleCenter, capitolHill, alki) {
 }
 
 function renderTable() {
-  var pike = new CookieStand('1st and Pike', 23, 65, 6.5);
-  pike.getCookiesSold();
-
-  var seaTac = new CookieStand('SeaTac Airport', 3, 24, 1.2);
-  seaTac.getCookiesSold();
-
-  var seattleCenter = new CookieStand('Seattle Center', 11, 38, 3.7);
-  seattleCenter.getCookiesSold();
-
-  var capitolHill = new CookieStand('Capitol Hill', 20, 38, 2.3);
-  capitolHill.getCookiesSold();
-
-  var alki = new CookieStand('Alki', 2, 16, 4.6);
-  alki.getCookiesSold();
 
   var div = document.getElementById('table-div');
   var table = document.createElement('table');
@@ -120,16 +119,44 @@ function renderTable() {
   head.setAttribute('id', 'sales-head');
   head.appendChild(createTableHeaderRow());
   table.appendChild(head);
-  table.appendChild(pike.getTableRow());
-  table.appendChild(seaTac.getTableRow());
-  table.appendChild(seattleCenter.getTableRow());
-  table.appendChild(capitolHill.getTableRow());
-  table.appendChild(alki.getTableRow());
+  for (var i = 0; i < stands.length; i++) {
+    table.appendChild(stands[i].getTableRow());
+  }
   var foot = document.createElement('tfoot');
   foot.setAttribute('id', 'sales-foot');
-  foot.appendChild(createTableFooterRow(pike, seaTac, seattleCenter, capitolHill, alki));
+  foot.appendChild(createTableFooterRow());
   table.appendChild(foot);
+  div.textContent = '';
   div.appendChild(table);
 }
 
+function createExistingLocations() {
+  createCookieStand('1st and Pike', 23, 65, 6.5);
+  createCookieStand('SeaTac Airport', 3, 24, 1.2);
+  createCookieStand('Seattle Center', 11, 38, 3.7);
+  createCookieStand('Capitol Hill', 20, 38, 2.3);
+  createCookieStand('Alki', 2, 16, 4.6);
+}
+
+function addLocationHandler(event) {
+  event.preventDefault();
+
+  var location = event.target.location.value;
+  var min = event.target.min.value;
+  var max = event.target.max.value;
+  var avg = event.target.avg.value;
+
+  event.target.location.value = '';
+  event.target.min.value = '';
+  event.target.max.value = '';
+  event.target.avg.value = '';
+
+  createCookieStand(location, min, max, avg);
+  renderTable();
+}
+
+var addLocationForm = document.getElementById('add-location');
+addLocationForm.addEventListener('submit', addLocationHandler);
+
+createExistingLocations();
 renderTable();
